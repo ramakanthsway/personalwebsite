@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramakanth Padala — Engineering Manager, Data & AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --surface: #ffffff;
+      --border: #e8e8e8;
+      --text: #111111;
+      --muted: #666666;
+      --accent: #0066ff;
+      --accent-light: #e8f0ff;
+      --tag-bg: #f0f0f0;
+      --tag-text: #333;
+      --section-gap: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,250,250,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: var(--section-gap) 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2.section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 140px;
+      padding-bottom: 100px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .hero-eyebrow-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero-eyebrow-text {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    h1.hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    h1.hero-name span { color: var(--accent); }
+    .hero-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .hero-summary {
+      font-size: 0.95rem;
+      color: #444;
+      max-width: 620px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #0052cc; transform: translateY(-1px); }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { border-color: #999; transform: translateY(-1px); }
+
+    .hero-avatar {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #0066ff 0%, #7c3aed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.04em;
+      flex-shrink: 0;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    .stat-card {
+      background: var(--surface);
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+    .exp-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg);
+      margin-bottom: 16px;
+    }
+    .exp-header {
+      padding: 24px 28px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .exp-header:hover { background: var(--accent-light); }
+    .exp-role {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .exp-company {
+      font-size: 0.9rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .exp-location {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .exp-period {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--tag-bg);
+      padding: 4px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .exp-body {
+      padding: 0 28px 24px;
+    }
+    .exp-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .exp-highlights li {
+      font-size: 0.875rem;
+      color: #444;
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .exp-highlights li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* ── SKILLS ── */
+    #skills { border-bottom: 1px solid var(--border); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .skill-group-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      padding: 5px 11px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .tag.highlight {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: #ccdeff;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      background: var(--bg);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), #7c3aed);
+    }
+    .project-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+    .project-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+    }
+    .project-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .project-desc {
+      font-size: 0.865rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+    .project-impact {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications { border-bottom: 1px solid var(--border); }
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .cert-logo {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .cert-logo.aws { background: #fff3e0; }
+    .cert-logo.cloudera { background: #e8f5e9; }
+    .cert-logo.databricks { background: #fce4ec; }
+    .cert-name {
+      font-weight: 600;
+      font-size: 0.875rem;
+      line-height: 1.4;
+    }
+    .cert-issuer {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact-lead {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--text);
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+    .contact-link-icon { font-size: 1.2rem; width: 24px; text-align: center; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+    .form-input, .form-textarea {
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { min-height: 110px; resize: vertical; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .footer-text a { color: var(--accent); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      :root { --section-gap: 70px; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-avatar { width: 120px; height: 120px; font-size: 2rem; }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">RP</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          <span class="hero-eyebrow-text">Available for senior leadership roles · Dallas, TX</span>
+        </div>
+        <h1 class="hero-name">Ramakanth<br /><span>Padala</span></h1>
+        <p class="hero-title">Engineering Manager · Data &amp; AI · Cloud Platforms</p>
+        <p class="hero-summary">
+          Data engineering leader with <strong>18 years</strong> of experience architecting and scaling enterprise data platforms. I build high-performing teams, drive AI adoption, and translate complex data infrastructure into measurable business outcomes — from real-time Kafka pipelines to governance-ready lakehouses.
+        </p>
+        <div class="hero-cta">
+          <a href="mailto:ai.ramakanth@gmail.com" class="btn btn-primary">📬 Get in Touch</a>
+          <a href="https://linkedin.com/in/ramakanth-reddy-padala" target="_blank" rel="noopener" class="btn btn-secondary">🔗 LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero-avatar">RP</div>
+    </div>
+
+    <div class="stats-strip">
+      <div class="stat-card">
+        <div class="stat-number">18+</div>
+        <div class="stat-label">Years of Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">50TB+</div>
+        <div class="stat-label">Data Processed Daily</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15</div>
+        <div class="stat-label">Engineers Led</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$4M</div>
+        <div class="stat-label">Budget Managed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCE ── -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Career</p>
+    <h2 class="section-title">Professional Experience</h2>
+
+    <div class="exp-list">
+
+      <!-- KinderCare -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Data Engineering Manager — Future of Data</div>
+            <div class="exp-company">KinderCare Learning Companies</div>
+            <div class="exp-location">Dallas, TX</div>
+          </div>
+          <span class="exp-period">Sep 2023 – Present</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-highlights">
+            <li>Own architecture and delivery for <strong>250+ Databricks pipelines</strong> processing <strong>50TB+</strong> of data across a team of 15 engineers — reduced pipeline processing times by 30%.</li>
+            <li>Built and operate <strong>20 real-time Kafka streaming pipelines</strong> enabling near-instant data availability for Product, Finance, and Operations — replacing overnight batch processing.</li>
+            <li>Architected migration to <strong>Databricks Unity Catalog</strong> as the single governance layer, consolidating access controls from three disparate systems with complete lineage visibility.</li>
+            <li>Drove AI adoption using <strong>Amazon Bedrock</strong> for automated metadata enrichment and CDE tagging — cutting manual catalog curation effort by 33% and establishing GenAI workflows as a team standard.</li>
+            <li>Scaled data quality enforcement across all pipelines using <strong>Great Expectations</strong>, shifting the team from reactive firefighting to proactive quality gates.</li>
+            <li>Stood up the enterprise data governance program covering 30+ critical datasets — passed first compliance review with <strong>zero findings</strong>, reduced security incidents by 20%.</li>
+            <li>Manage a <strong>$4M annual budget</strong> spanning cloud infrastructure and vendor relationships with Databricks and Alation, owning contract negotiations and platform roadmap alignment.</li>
+            <li>Maintained a <strong>95% on-time delivery rate</strong> over the past year across quarterly OKR cycles, translating business priorities into engineering milestones with clear owners and timelines.</li>
+            <li>Coached and promoted 2 engineers to the next level through structured growth plans and active sponsorship.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Transamerica -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Engineering Manager, Data Analytics</div>
+            <div class="exp-company">Transamerica Life Insurance Company</div>
+            <div class="exp-location">Plano, TX</div>
+          </div>
+          <span class="exp-period">Sep 2020 – Aug 2023</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-highlights">
+            <li>Led data lake build-out and full ETL/ELT automation on <strong>Snowflake and AWS</strong> — cut report generation latency by 25% and improved processing throughput by 30% in a SOX-regulated environment.</li>
+            <li>Built the company's first <strong>enterprise data catalog using Alation</strong> — complete business glossary, data ownership, and CDE inventory. Achieved meaningful adoption across Actuarial, Finance, Risk, and Compliance within 8 months.</li>
+            <li>Served as the technical lead during <strong>SOX audits</strong> with zero material findings across multiple audit cycles, presenting the governance framework directly to examiners.</li>
+            <li>Standardized engineering delivery through <strong>Jenkins CI/CD pipelines</strong> and Architecture Decision Records, replacing informal practices with repeatable, auditable engineering standards.</li>
+            <li>Managed a <strong>$3M annual budget</strong> across Snowflake, Alation, and Informatica, owning contract negotiations and platform roadmap alignment.</li>
+            <li>Reduced team turnover from <strong>22% to 12%</strong> over two years by promoting 2 engineers and building a culture of clear ownership and growth.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Deloitte -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Specialist Senior Data Architect</div>
+            <div class="exp-company">Deloitte Consulting · Client: M&amp;T Bank</div>
+            <div class="exp-location">Dallas, TX</div>
+          </div>
+          <span class="exp-period">Oct 2017 – Aug 2020</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-highlights">
+            <li>Led data architecture modernization for M&amp;T Bank's retail and commercial banking domains — delivered a program fully defensible under regulatory examiner questioning.</li>
+            <li>Built M&amp;T Bank's data stewardship program from the ground up — data ownership, business glossary, lineage documentation across lending, originations, and servicing systems.</li>
+            <li>Redesigned data architecture across <strong>SQL, NoSQL, and Graph DB</strong> — drove a 35% improvement in reporting performance at 99.9% uptime.</li>
+            <li>Led <strong>7+ proof-of-concept engagements</strong> evaluating cloud data technologies; migrated workloads achieved 40% operational efficiency gains.</li>
+            <li>Mentored 10 junior engineers on governance principles and architecture design — several have since progressed to senior and lead roles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Epsilon -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Principal Big Data Solutions Architect</div>
+            <div class="exp-company">Epsilon Data Management</div>
+            <div class="exp-location">Irving, TX</div>
+          </div>
+          <span class="exp-period">Jun 2015 – Sep 2017</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-highlights">
+            <li>Delivered <strong>20+ big data architecture engagements</strong> across 30+ enterprise clients in finance, healthcare, and retail — 40% improvement in processing efficiency.</li>
+            <li>Designed and built <strong>5+ data lakes and real-time streaming pipelines</strong> using Apache Spark and Hadoop — 99.9% uptime and 99% data accuracy across all production deployments.</li>
+            <li>Served as the data strategy advisor for C-suite sponsors at 10+ clients, directly influencing platform investment decisions at the executive level.</li>
+            <li>Designed 20+ data models across SQL, NoSQL, and Graph DB — reduced average query response times by 25%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- IBM -->
+      <div class="exp-card">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Data Specialist — Banking &amp; Financial Services</div>
+            <div class="exp-company">IBM · Clients: JPMorgan Chase, Prudential, Lloyds</div>
+            <div class="exp-location">India / USA</div>
+          </div>
+          <span class="exp-period">Apr 2007 – Dec 2012</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-highlights">
+            <li>Implemented the <strong>IBM Banking Data Model</strong> for JPMorgan Chase and four other tier-1 financial institutions — core banking workload processing times improved by up to 30%.</li>
+            <li>Delivered enterprise data warehousing and ETL solutions using <strong>IBM DataStage, Cognos, and DB2</strong> for 10+ consumer finance and banking clients.</li>
+            <li>Served as technical lead across <strong>15+ ETL projects</strong> managing teams of 4–12 engineers — improved estimation discipline drove a 20% reduction in delivery timelines.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="container">
+    <p class="section-label">Expertise</p>
+    <h2 class="section-title">Technical Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud Platforms</div>
+        <div class="tags">
+          <span class="tag highlight">AWS</span>
+          <span class="tag highlight">Azure</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Snowflake</span>
+          <span class="tag">S3 / Redshift</span>
+          <span class="tag">Lambda / EMR</span>
+          <span class="tag">Amazon Bedrock</span>
+          <span class="tag">ADLS</span>
+          <span class="tag">Synapse</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Big Data &amp; Streaming</div>
+        <div class="tags">
+          <span class="tag highlight">Databricks</span>
+          <span class="tag highlight">Apache Kafka</span>
+          <span class="tag highlight">Apache Spark</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Delta Lake</span>
+          <span class="tag">Apache Iceberg</span>
+          <span class="tag">Hadoop / Hive</span>
+          <span class="tag">Kinesis</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ETL / Pipeline Engineering</div>
+        <div class="tags">
+          <span class="tag highlight">dbt</span>
+          <span class="tag">Apache Airflow</span>
+          <span class="tag">Informatica PowerCenter</span>
+          <span class="tag">IBM DataStage</span>
+          <span class="tag">FiveTran</span>
+          <span class="tag">Azure Data Factory</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Data Governance &amp; Quality</div>
+        <div class="tags">
+          <span class="tag highlight">Databricks Unity Catalog</span>
+          <span class="tag highlight">Alation</span>
+          <span class="tag">Great Expectations</span>
+          <span class="tag">Apache Atlas</span>
+          <span class="tag">Microsoft Purview</span>
+          <span class="tag">IDQ</span>
+          <span class="tag">Business Glossary</span>
+          <span class="tag">Data Lineage</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">AI / GenAI</div>
+        <div class="tags">
+          <span class="tag highlight">Amazon Bedrock</span>
+          <span class="tag highlight">LLM / RAG Pipelines</span>
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">Claude Code</span>
+          <span class="tag">Amazon Q</span>
+          <span class="tag">Auto-Tagging / Cataloging</span>
+          <span class="tag">Vibe Coding</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">DevOps &amp; Infrastructure</div>
+        <div class="tags">
+          <span class="tag highlight">Terraform</span>
+          <span class="tag highlight">Kubernetes (EKS)</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Helm</span>
+          <span class="tag">CloudFormation</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">Azure DevOps</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="tags">
+          <span class="tag highlight">SQL (Advanced)</span>
+          <span class="tag highlight">Python</span>
+          <span class="tag">PySpark</span>
+          <span class="tag">Java</span>
+          <span class="tag">PL/SQL</span>
+          <span class="tag">Shell Scripting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Leadership &amp; Management</div>
+        <div class="tags">
+          <span class="tag highlight">Servant Leadership</span>
+          <span class="tag highlight">OKR Planning</span>
+          <span class="tag">Engineering Coaching</span>
+          <span class="tag">Incident Response</span>
+          <span class="tag">FinOps</span>
+          <span class="tag">Stakeholder Comms</span>
+          <span class="tag">Vendor Negotiations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ── -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Impact</p>
+    <h2 class="section-title">Key Projects</h2>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">🏗️</div>
+        <div class="project-title">Enterprise Data Lakehouse — KinderCare</div>
+        <p class="project-desc">Architected and delivered an end-to-end Databricks lakehouse supporting 250+ pipelines and 50TB+ of daily data. Migrated to Unity Catalog as the unified governance layer, consolidating access controls from three disparate systems with complete lineage visibility across batch and streaming workloads.</p>
+        <span class="project-impact">▲ 30% faster pipeline processing</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">⚡</div>
+        <div class="project-title">Real-Time Kafka Streaming Platform</div>
+        <p class="project-desc">Designed and operated 20 real-time Kafka streaming pipelines for high-throughput event data across operational systems at KinderCare. Replaced overnight batch processing with near-instant data availability for Product, Finance, and Operations stakeholders.</p>
+        <span class="project-impact">⚡ Real-time vs. overnight batch</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🤖</div>
+        <div class="project-title">GenAI Metadata Enrichment (Amazon Bedrock)</div>
+        <p class="project-desc">Piloted Amazon Bedrock LLMs for automated metadata enrichment and Critical Data Element (CDE) tagging across the Alation catalog. Established GenAI-assisted workflows as a team standard and significantly improved tagging consistency and discoverability.</p>
+        <span class="project-impact">▼ 33% manual curation effort</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🏦</div>
+        <div class="project-title">M&amp;T Bank Data Architecture Modernization</div>
+        <p class="project-desc">Led data architecture modernization and governance design for M&amp;T Bank's retail and commercial banking domains at Deloitte. Built the bank's data stewardship program from scratch including ownership models, business glossary, and lineage documentation across lending, originations, and servicing systems.</p>
+        <span class="project-impact">▲ 35% reporting performance gain</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🛡️</div>
+        <div class="project-title">Enterprise Data Governance Program</div>
+        <p class="project-desc">Stood up KinderCare's enterprise data governance program covering metadata classification, lineage documentation, and sensitivity labeling across 30+ critical datasets. Program passed its first compliance review with zero findings.</p>
+        <span class="project-impact">✓ Zero compliance findings</span>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">📊</div>
+        <div class="project-title">SOX-Compliant Financial Data Platform</div>
+        <p class="project-desc">Engineered 10+ production data pipelines on Snowflake and AWS with lineage traceability and access controls built into the design from day one at Transamerica. Maintained controls that held up under direct examiner scrutiny across multiple audit cycles with no material findings.</p>
+        <span class="project-impact">▼ 25% report generation latency</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CERTIFICATIONS ── -->
+<section id="certifications">
+  <div class="container">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Education &amp; Certifications</h2>
+
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-logo aws">☁️</div>
+        <div>
+          <div class="cert-name">AWS Certified Data Analytics Specialty</div>
+          <div class="cert-issuer">Amazon Web Services</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo databricks">🔺</div>
+        <div>
+          <div class="cert-name">Databricks Data Engineer Professional</div>
+          <div class="cert-issuer">Databricks</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-logo cloudera">🌿</div>
+        <div>
+          <div class="cert-name">Cloudera Certified PySpark Professional</div>
+          <div class="cert-issuer">Cloudera</div>
+        </div>
+      </div>
+      <div class="cert-card" style="background: linear-gradient(135deg, var(--accent-light), #f3e8ff); border-color: #ccdeff;">
+        <div class="cert-logo" style="background: #fff;">🎓</div>
+        <div>
+          <div class="cert-name">MS, Information Technology &amp; Management</div>
+          <div class="cert-issuer">University of Texas at Dallas, 2014</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Get in Touch</h2>
+
+    <div class="contact-grid">
+      <div>
+        <p class="contact-lead">
+          I'm always open to discussing senior Data &amp; AI engineering leadership opportunities, architecture consulting, or just a conversation about building high-performing data teams. Reach out — I'd love to connect.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:ai.ramakanth@gmail.com" class="contact-link">
+            <span class="contact-link-icon">📧</span>
+            <span>ai.ramakanth@gmail.com</span>
+          </a>
+          <a href="https://linkedin.com/in/ramakanth-reddy-padala" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link-icon">🔗</span>
+            <span>linkedin.com/in/ramakanth-reddy-padala</span>
+          </a>
+          <a href="tel:2142449269" class="contact-link">
+            <span class="contact-link-icon">📞</span>
+            <span>(214) 244-9269</span>
+          </a>
+          <a href="#" class="contact-link">
+            <span class="contact-link-icon">📍</span>
+            <span>Dallas, TX</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-input" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container">
+    <p class="footer-text">
+      © 2026 Ramakanth Padala · Built with care ·
+      <a href="mailto:ai.ramakanth@gmail.com">ai.ramakanth@gmail.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Smooth active nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.style.color = link.getAttribute('href') === '#' + entry.target.id
+            ? 'var(--text)' : 'var(--muted)';
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Contact form stub
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ Message sent!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
